@@ -86,3 +86,24 @@ Tìm kiếm theo tên.
 ### 5.Lombox trong quá trình làm bt giới thiệu luôn về lombox
 https://viblo.asia/p/tat-tan-tat-ve-mo-hinh-mvc-Rk74avjAJeO
 https://viblo.asia/p/cung-tim-hieu-ve-http-request-methods-djeZ1xBoKWz
+## Buoi 3: Giới thiệu về responsebody(Phan biet controller,restcontroller) + form
+### 1. Request Mapping(tiep)
+- Request Param : Lấy các giá trị khác nhau của ô input. Thuộc tính name của ô input => Lấy giá trị của ô param đấy
+- PathVariable:Lấy các giá trị trên đường dẫn url.
+- ModelAttribute: Spring tự tạo đối tượng với constructor không tham số và gán cho đối
+  số có @ModelAttribute
+- Databinding là sự kết nối dữ liệu của bean trong Model vào các Điều khiển form và ngược lại.
+### 2. Controller và RestController
+Controller trong ứng dụng Spring Boot là nơi tiếp nhận request và trả về response cho client. Có thể hiểu controller chính là lớp trung gian giữa server của bạn và bên ngoài.
+<br/>
+Về mặt code, Controller chỉ đơn thuần là một bean được đánh dấu với @Controller hoặc @RestController.
+<br/>
+Trong Spring Boot, có hai dạng Controller, tương ứng hai annotation trên:
+<br/>
+@Controller có thể trả về View qua một String hoặc JSON data trong response body (nếu được chỉ định). Thích hợp cho các controller có routing, chuyển trang các kiểu.
+@RestController chỉ có thể trả về data trong response body. Thích hợp cho các controller để cung cấp API.
+<br/>
+https://viblo.asia/p/spring-boot-xu-ly-request-trong-controller-nhu-the-nao-phan-1-gGJ59ANj5X2
+## Buổi 4: Validator
+https://viblo.asia/p/dung-validation-bang-tay-trong-spring-boot-phan-1-3P0lPGyoZox
+https://techmaster.vn/posts/36877/xac-thuc-request-bang-spring-boot-validation
