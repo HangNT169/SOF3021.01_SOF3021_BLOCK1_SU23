@@ -32,4 +32,17 @@ public class SinhVienServiceImpl implements SinhVienService {
         }
         return null;
     }
+
+    @Override
+    public void removeSinhVien(String ma) {
+        // tim sv
+        SinhVien sinhVien = detailSinhVien(ma);
+        // xoa
+        lists.remove(sinhVien);
+    }
+
+    @Override
+    public void addSinhVien(SinhVien sinhVien) {
+        lists.add(sinhVien);
+    }
 }
