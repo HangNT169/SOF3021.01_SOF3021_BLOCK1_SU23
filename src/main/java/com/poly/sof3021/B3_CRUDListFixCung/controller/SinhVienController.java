@@ -3,13 +3,15 @@ package com.poly.sof3021.B3_CRUDListFixCung.controller;
 import com.poly.sof3021.B3_CRUDListFixCung.entity.SinhVien;
 import com.poly.sof3021.B3_CRUDListFixCung.service.SinhVienService;
 import com.poly.sof3021.B3_CRUDListFixCung.service.impl.SinhVienServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,30 +64,31 @@ public class SinhVienController {
         return "redirect:/sinh-vien/hien-thi";
     }
 
-    @GetMapping("view-add")
-    public String viewAddSinhVien() {
-        return "/buoi3/add-sinh-vien";
-    }
-
-    @PostMapping("add")
-    public String addSinhVien(@RequestParam("mssv") String mssv,
-                              @RequestParam("ten") String ten,
-                              @RequestParam("tuoi") String tuoi,
-                              @RequestParam("diaChi") String diaChi,
-                              @RequestParam("gioiTinh") String gioiTinh) {
-        // B1: Convent thanh Object
-//        SinhVien sinhVien = new SinhVien(mssv, ten, Integer.valueOf(tuoi), diaChi, Boolean.valueOf(gioiTinh));
-        SinhVien sinhVien = SinhVien.builder()
-                .diaChi(diaChi)
-                .gioiTinh(Boolean.valueOf(gioiTinh))
-                .ma(mssv)
-                .ten(ten)
-                .tuoi(Integer.valueOf(tuoi))
-                .build(); // <=> Contructor Khong Tham So
-        // B2: Goi add trong service
-        sinhVienService.addSinhVien(sinhVien);
-        return "redirect:/sinh-vien/hien-thi";
-    }
+    // C1: Form HTML
+//    @GetMapping("view-add")
+//    public String viewAddSinhVien() {
+//        return "/buoi3/add-sinh-vien";
+//    }
+//
+//    @PostMapping("add")
+//    public String addSinhVien(@RequestParam("mssv") String mssv,
+//                              @RequestParam("ten") String ten,
+//                              @RequestParam("tuoi") String tuoi,
+//                              @RequestParam("diaChi") String diaChi,
+//                              @RequestParam("gioiTinh") String gioiTinh) {
+//        // B1: Convent thanh Object
+////        SinhVien sinhVien = new SinhVien(mssv, ten, Integer.valueOf(tuoi), diaChi, Boolean.valueOf(gioiTinh));
+//        SinhVien sinhVien = SinhVien.builder()
+//                .diaChi(diaChi)
+//                .gioiTinh(Boolean.valueOf(gioiTinh))
+//                .ma(mssv)
+//                .ten(ten)
+//                .tuoi(Integer.valueOf(tuoi))
+//                .build(); // <=> Contructor Khong Tham So
+//        // B2: Goi add trong service
+//        sinhVienService.addSinhVien(sinhVien);
+//        return "redirect:/sinh-vien/hien-thi";
+//    }
     // Phan biet Controller & Rest Controller
     // Controller => Luon luon tra ve View (Return 1 String)
     // RestController => API duoi dang default JSON
@@ -102,5 +105,22 @@ public class SinhVienController {
 //        return sinhViens;
 //    }
 
+    // C2: Data Binding :La co che mapping 2 chieu MODEL <=> VIEW
+//    => Spring Form
+    @GetMapping("view-add")
+    public String viewAddSinhVien(Model model) {
+        // Khoi tao 1 Object roi truyen sang view
+        model.addAttribute("sv", new SinhVien());
+        return "/buoi5/add-sinh-vien";
+    }
 
+    @PostMapping("add")
+    public String addSinhVien(@Valid @ModelAttribute("sv") SinhVien sinhVien, BindingResult result) {
+        // Neu ma co loi => hasError = true => Quay lai trang add
+        if(result.hasErrors()){
+            return "/buoi5/add-sinh-vien";
+        }
+        sinhVienService.addSinhVien(sinhVien);
+        return "redirect:/sinh-vien/hien-thi";
+    }
 }
