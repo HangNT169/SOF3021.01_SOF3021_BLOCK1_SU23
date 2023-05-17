@@ -18,7 +18,7 @@
 - Với dự án spring boot bản chất của nó là theo mô hình design signleton . Nó nhận diện main chính để chạy bằng annotation @SpingBootAplication.
 
   1.6: Trao đổi :
-    - Model sẽ chứa dữ liệu chia sẻ với View
+  - Model sẽ chứa dữ liệu chia sẻ với View
 
 
 # Buổi 2:
@@ -107,3 +107,15 @@ https://viblo.asia/p/spring-boot-xu-ly-request-trong-controller-nhu-the-nao-phan
 ## Buổi 4: Validator
 https://viblo.asia/p/dung-validation-bang-tay-trong-spring-boot-phan-1-3P0lPGyoZox
 https://techmaster.vn/posts/36877/xac-thuc-request-bang-spring-boot-validation
+@NotNull – kiểm tra giá trị null<br/>
+@AssertTrue – kiểm tra giá trị thuộc tính là true<br/>
+@Size – kiểm tra độ dài min and max<br/>
+@Min – kiểm tra giá trị nhỏ nhất<br/>
+@Max – Kiểm tra giá trị lớn nhất<br/>
+@Email – kiểm tra email có hợp lệ<br/>
+@NotEmpty – kiểm tra không được trống và empty<br/>
+@NotBlank – kiểm tra giá trị không được null hoặc khoảng trắng<br/>
+@Positive and @PositiveOrZero – kiểm tra chỉ được phép là số nguyên dương từ 0 trở đi<br/>
+@Negative and @NegativeOrZero – kiểm tra số âm<br/>
+@Past and @PastOrPresent – kiểm tra ngày từ quá khứ đến hiện tại.<br/>
+@Future and @FutureOrPresent – kiểm tra ngày từ hiện tại đến tương lai<br/>
