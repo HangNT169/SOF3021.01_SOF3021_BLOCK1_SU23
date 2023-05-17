@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,13 +20,14 @@ import lombok.Setter;
 public class SinhVien {
 
     @NotEmpty(message = "Ahihi do ngoc")
-    @Min(value = 5)
+    @Size(min = 5)
     private String ma;
 
     @Pattern(regexp = "[a-z A-Z]+")
     private String ten;
 
     @NotNull
+    @Min(value = 5)
     private Integer tuoi;
 
     private String diaChi;
