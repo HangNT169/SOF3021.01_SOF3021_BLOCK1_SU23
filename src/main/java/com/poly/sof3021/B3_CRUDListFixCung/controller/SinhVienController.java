@@ -2,8 +2,8 @@ package com.poly.sof3021.B3_CRUDListFixCung.controller;
 
 import com.poly.sof3021.B3_CRUDListFixCung.entity.SinhVien;
 import com.poly.sof3021.B3_CRUDListFixCung.service.SinhVienService;
-import com.poly.sof3021.B3_CRUDListFixCung.service.impl.SinhVienServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +22,10 @@ import java.util.List;
 public class SinhVienController {
     // @Controller => MVC => Tat ham /request => LUON LUON TRA VE 1 VIEW (RETURN STRING => TEN CUA VIEW)
 
-    private SinhVienService sinhVienService = new SinhVienServiceImpl();
+    //    private SinhVienService sinhVienService = new SinhVienServiceImpl();
+    @Autowired
+    private SinhVienService sinhVienService;
+
     // interface = new class
 
     private List<SinhVien> lists = new ArrayList<>();
@@ -117,7 +120,7 @@ public class SinhVienController {
     @PostMapping("add")
     public String addSinhVien(@Valid @ModelAttribute("sv") SinhVien sinhVien, BindingResult result) {
         // Neu ma co loi => hasError = true => Quay lai trang add
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "/buoi5/add-sinh-vien";
         }
         sinhVienService.addSinhVien(sinhVien);

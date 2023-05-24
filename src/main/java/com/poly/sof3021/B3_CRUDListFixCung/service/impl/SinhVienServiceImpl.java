@@ -2,10 +2,14 @@ package com.poly.sof3021.B3_CRUDListFixCung.service.impl;
 
 import com.poly.sof3021.B3_CRUDListFixCung.entity.SinhVien;
 import com.poly.sof3021.B3_CRUDListFixCung.service.SinhVienService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@Component // Nhan class nay la bean
+@Service
 public class SinhVienServiceImpl implements SinhVienService {
 
     private List<SinhVien> lists = new ArrayList<>();
